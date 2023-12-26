@@ -8,5 +8,5 @@
     "outDir": "dist",
     "esModuleInterop": true
   },
-  "exclude": ["bin/*", "dist/*", "docs/*", "tsup.config.ts"]
+  "exclude": ["bin/*", "dist/*", "docs/*", "tsup.config.ts", "eslint*"]
 }

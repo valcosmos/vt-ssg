@@ -3,7 +3,7 @@ import type { InlineConfig } from 'vite'
 import { build as viteBuild } from 'vite'
 import type { RollupOutput } from 'rollup'
 import fs from 'fs-extra'
-import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH } from './constant'
+import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH } from './constants'
 
 // const dynamicImport = new Function('m', 'return import(m)')
 // const { default: ora } = await dynamicImport('ora')
@@ -28,18 +28,17 @@ export async function bundle(root: string) {
 
   // console.log()
   try {
-    const clientBuild = async () => {
-      return viteBuild(resolveViteConfig(false))
-    }
-
-    const serverBuild = async () => {
-      return viteBuild(resolveViteConfig(true))
-    }
-
-    const [clientBundle, serverBundle] = await Promise.all([clientBuild(), serverBuild()])
-    return [clientBundle, serverBundle]
+    const [clientBundle, serverBundle] = await Promise.all([
+      // client build
+      viteBuild(resolveViteConfig(false)),
+      // server build
+      viteBuild(resolveViteConfig(true)),
+    ])
+    return [clientBundle, serverBundle] as [RollupOutput, RollupOutput]
   }
-  catch (error) {}
+  catch (error) {
+
+  }
 }
 
 export async function renderPage(render: () => string, root: string, clientBundle: RollupOutput) {
@@ -55,21 +54,21 @@ export async function renderPage(render: () => string, root: string, clientBundl
   </head>
   <body>
     <div id="root">${appHtml}</div>
-    <script type="module" src="/${clientChunk.fileName}"></script>
+    <script type="module" src="/${clientChunk?.fileName}"></script>
   </body>
 </html>
   `.trim()
-
+  await fs.ensureDir(join(root, 'build'))
   await fs.writeJSON(join(root, 'build', 'index.html'), html)
   await fs.remove(join(root, '.temp'))
 }
 
 export async function build(root: string) {
   // bundle  client端 + server端
-  const [clientBundle, serverBundle] = await bundle(root)
+  const [clientBundle] = await bundle(root)
   // 引入 server-entry 模块
   const serverEntryPath = join(root, '.temp', 'ssr-entry.js')
   // 服务端渲染，产出html
   const { render } = await import(serverEntryPath)
-  await renderPage(render, root, clientBundle as RollupOutput)
+  await renderPage(render, root, clientBundle)
 }
