@@ -5,34 +5,33 @@ export interface NavItemWithLink {
   link: string
 }
 
-export interface SidebarGroup {
-  text: string
-  items: SidebarItem[]
-}
-
-export interface SidebarItem {
-  text: string
-  link: string
-}
-
 export interface Sidebar {
   [path: string]: SidebarGroup[]
 }
 
-export interface Footer {
-  message: string
-
+export interface SidebarGroup {
+  text?: string
+  items: SidebarItem[]
 }
 
+export type SidebarItem =
+  | { text: string, link: string }
+  | { text: string, link?: string, items: SidebarItem[] }
+
 export interface ThemeConfig {
-  nav: NavItemWithLink
+  nav?: NavItemWithLink[]
   sidebar?: Sidebar
   footer?: Footer
 }
 
+export interface Footer {
+  message?: string
+  copyright?: string
+}
+
 export interface UserConfig {
-  title: string
-  description: string
-  themeConfig: ThemeConfig
-  vite: ViteConfiguration
+  title?: string
+  description?: string
+  themeConfig?: ThemeConfig
+  vite?: ViteConfiguration
 }
