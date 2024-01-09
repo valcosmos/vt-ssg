@@ -1,7 +1,7 @@
 import { resolve } from 'node:path'
 import { loadConfigFromFile } from 'vite'
 import fs from 'fs-extra'
-import type { UserConfig } from '../shared/types'
+import type { SiteConfig, UserConfig } from '../shared/types'
 
 type RawConfig =
   | UserConfig
@@ -22,12 +22,8 @@ function getUserConfigPath(root: string) {
   }
 }
 
-export async function resolveConfig(
-  root: string,
-  command: 'serve' | 'build',
-  mode: 'development' | 'production',
-) {
-  // 1. 获取配置文件路径
+export async function resolveUserConfig(root: string, command: 'serve' | 'build', mode: 'development' | 'production'): Promise<[string, UserConfig]> {
+// 1. 获取配置文件路径
   const configPath = getUserConfigPath(root)
 
   // 2. 读取配置文件的内容
@@ -39,9 +35,36 @@ export async function resolveConfig(
     // 2. promise
     // 3. function
     const userConfig = await (typeof rawConfig === 'function' ? rawConfig() : rawConfig)
-    return [configPath, userConfig] as const
+    return [configPath, userConfig as UserConfig] as const
   }
   else {
     return [configPath, {} as UserConfig] as const
   }
+}
+
+export function resolveSiteData(userConfig: UserConfig): UserConfig {
+  return {
+    title: userConfig.title || 'vt-ssg',
+    description: userConfig.description || 'SSG Framework',
+    themeConfig: userConfig.themeConfig || {},
+    vite: userConfig.vite || {},
+  }
+}
+
+export async function resolveConfig(
+  root: string,
+  command: 'serve' | 'build',
+  mode: 'development' | 'production',
+) {
+  const [configPath, userConfig] = await resolveUserConfig(root, command, mode)
+  const siteConfig: SiteConfig = {
+    root,
+    configPath,
+    siteData: resolveSiteData(userConfig),
+  }
+  return siteConfig
+}
+
+export function defineConfig(config: UserConfig) {
+  return config
 }
