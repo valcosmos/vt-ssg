@@ -2,6 +2,7 @@
   "compilerOptions": {
     /* Language and Environment */
     "target": "ESNext",
+    "jsx": "react-jsx",
     "rootDir": "src",
     "module": "commonjs",
     /* Type Checking */
