@@ -6,24 +6,24 @@ import type { InlineConfig } from 'vite'
 import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH } from './constants'
 
 export async function bundle(root: string) {
-  try {
-    const resolveViteConfig = (isServer: boolean): InlineConfig => {
-      return {
-        mode: 'production',
-        root,
-        build: {
-          ssr: isServer,
-          outDir: isServer ? '.temp' : 'build',
-          rollupOptions: {
-            input: isServer ? SERVER_ENTRY_PATH : CLIENT_ENTRY_PATH,
-            output: {
-              format: isServer ? 'cjs' : 'esm',
-            },
+  const resolveViteConfig = (isServer: boolean): InlineConfig => {
+    return {
+      mode: 'production',
+      root,
+      build: {
+        ssr: isServer,
+        outDir: isServer ? '.temp' : 'build',
+        rollupOptions: {
+          input: isServer ? SERVER_ENTRY_PATH : CLIENT_ENTRY_PATH,
+          output: {
+            format: isServer ? 'cjs' : 'esm',
           },
         },
-      }
+      },
     }
+  }
 
+  try {
     const clientBuild = async () => {
       return viteBuild(resolveViteConfig(false))
     }
@@ -72,7 +72,7 @@ export async function build(root: string) {
 
   const serverEntryPath = resolve(root, '.temp', 'ssr-entry.js')
 
-  // eslint-disable-next-line ts/no-require-imports
-  const { render } = require(serverEntryPath)
+  const { render } = await import(serverEntryPath)
+
   await renderPage(render, root, clientBundle as RollupOutput)
 }
