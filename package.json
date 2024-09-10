@@ -14,7 +14,8 @@
     "build": "tsup",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks",
+    "test:unit": "vitest run"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.3.1",
@@ -38,7 +39,8 @@
     "rollup": "^4.21.2",
     "simple-git-hooks": "^2.11.1",
     "tsup": "^8.2.4",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "vitest": "^2.0.5"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
