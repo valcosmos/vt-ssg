@@ -1,6 +1,5 @@
 import { rm, writeFile } from 'node:fs/promises'
 import { join, resolve } from 'node:path'
-import process from 'node:process'
 import { build as viteBuild } from 'vite'
 import type { RollupOutput } from 'rollup'
 import type { InlineConfig } from 'vite'
@@ -71,7 +70,7 @@ export async function renderPage(render: () => string, root: string, clientBundl
 export async function build(root: string) {
   const [clientBundle, _serverBundle] = await bundle(root)
 
-  const serverEntryPath = resolve(process.cwd(), 'docs', '.temp', 'ssr-entry.js')
+  const serverEntryPath = resolve(root, '.temp', 'ssr-entry.js')
 
   // eslint-disable-next-line ts/no-require-imports
   const { render } = require(serverEntryPath)
