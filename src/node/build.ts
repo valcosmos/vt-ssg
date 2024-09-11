@@ -70,7 +70,7 @@ export async function renderPage(render: () => string, root: string, clientBundl
 export async function build(root: string) {
   const [clientBundle, _serverBundle] = await bundle(root)
 
-  const serverEntryPath = resolve(root, '.temp', 'ssr-entry.js')
+  const serverEntryPath = resolve(root, '.temp', 'ssr-entry.cjs')
 
   const { render } = await import(serverEntryPath)
 
