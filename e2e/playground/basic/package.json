@@ -1,0 +1,17 @@
+{
+  "name": "basic",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "index.js",
+  "scripts": {
+    "dev": "vt-ssg dev docs",
+    "build": "vt-ssg build docs",
+    "preview": "vt-ssg start docs"
+  },
+  "dependencies": {
+    "vt-ssg": "../../.."
+  }
+}

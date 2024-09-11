@@ -4,7 +4,8 @@
     "target": "ESNext",
     "jsx": "react-jsx",
     "rootDir": ".",
-    "module": "commonjs",
+    "module": "ESNext",
+    "moduleResolution": "Node",
     /* Type Checking */
     "strict": true,
     "outDir": "dist",

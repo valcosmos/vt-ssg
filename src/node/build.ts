@@ -1,5 +1,6 @@
 import { rm, writeFile } from 'node:fs/promises'
-import { join, resolve } from 'node:path'
+import { join } from 'node:path'
+import process from 'node:process'
 import { build as viteBuild } from 'vite'
 import type { RollupOutput } from 'rollup'
 import type { InlineConfig } from 'vite'
@@ -67,10 +68,10 @@ export async function renderPage(render: () => string, root: string, clientBundl
   await rm(join(root, '.temp'), { recursive: true })
 }
 
-export async function build(root: string) {
+export async function build(root: string = process.cwd()) {
   const [clientBundle, _serverBundle] = await bundle(root)
 
-  const serverEntryPath = resolve(root, '.temp', 'ssr-entry.cjs')
+  const serverEntryPath = join(root, '.temp', 'ssr-entry.cjs')
 
   const { render } = await import(serverEntryPath)
 

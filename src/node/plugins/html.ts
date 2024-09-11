@@ -23,14 +23,15 @@ export function pluginHtml(): Plugin {
     configureServer(server) {
       return () => {
         server.middlewares.use(async (req, res, next) => {
-          let content = await readFile(DEFAULT_TEMPLATE_PATH, 'utf-8')
+          let html = await readFile(DEFAULT_TEMPLATE_PATH, 'utf-8')
           try {
-            content = await server.transformIndexHtml(req.url!, content, req.originalUrl)
-            res.setHeader('Content-Type', 'text/html')
-            res.end(content)
+            html = await server.transformIndexHtml(req.url!, html, req.originalUrl)
+            res.statusCode = 200
+            res.setHeader('html-Type', 'text/html')
+            res.end(html)
           }
           catch (error) {
-            next(error)
+            return next(error)
           }
         })
       }
