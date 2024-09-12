@@ -3,6 +3,7 @@
     /* Language and Environment */
     "target": "ESNext",
     "jsx": "react-jsx",
+    "baseUrl": "src",
     "rootDir": ".",
     "module": "ESNext",
     "moduleResolution": "Node",
@@ -13,6 +14,6 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
   },
-  "include": ["**/**.ts"],
+  "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }
