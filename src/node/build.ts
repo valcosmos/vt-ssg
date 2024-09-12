@@ -1,9 +1,9 @@
+import type { RollupOutput } from 'rollup'
+import type { InlineConfig } from 'vite'
 import { rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import process from 'node:process'
 import { build as viteBuild } from 'vite'
-import type { RollupOutput } from 'rollup'
-import type { InlineConfig } from 'vite'
 import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH } from './constants'
 
 export async function bundle(root: string) {

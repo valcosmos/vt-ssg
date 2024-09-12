@@ -1,6 +1,6 @@
-import { relative } from 'node:path'
 import type { SiteConfig } from 'shared/types'
 import type { Plugin } from 'vite'
+import { relative } from 'node:path'
 
 const SITE_DATA_ID = 'vt-ssg:site-data'
 

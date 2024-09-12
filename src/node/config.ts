@@ -1,7 +1,7 @@
+import type { SiteConfig, UserConfig } from '../shared/types'
 import { existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { loadConfigFromFile } from 'vite'
-import type { SiteConfig, UserConfig } from '../shared/types'
 
 type RawConfig = UserConfig | Promise<UserConfig> | (() => UserConfig | Promise<UserConfig>)
 
