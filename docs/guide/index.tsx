@@ -1,7 +1,7 @@
-import React from 'react'
-
-export default function Guide() {
+export default function Index() {
   return (
-    <div>Guide</div>
+    <div>
+      <h1>Index</h1>
+    </div>
   )
 }

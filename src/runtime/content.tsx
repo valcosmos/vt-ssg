@@ -1,9 +1,5 @@
-import type { RouteObject } from 'react-router-dom'
 import { useRoutes } from 'react-router-dom'
-
-const routes: RouteObject[] = [
-
-]
+import { routes } from 'vt-ssg:routes'
 
 export function Content() {
   const rootElement = useRoutes(routes)
