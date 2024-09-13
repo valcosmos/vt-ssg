@@ -27,7 +27,8 @@
     "ora": "^8.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "vite": "^5.4.4"
+    "react-router-dom": "^6.26.2",
+    "vite": "^5.4.5"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.6.0",

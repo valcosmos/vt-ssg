@@ -1,7 +1,12 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
+import { StaticRouter } from 'react-router-dom/server'
 import App from './App'
 
 export function render() {
-  return renderToString(<App />)
+  return renderToString(
+    <StaticRouter location="/guide/a">
+      <App />
+    </StaticRouter>,
+  )
 }

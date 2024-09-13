@@ -1,6 +1,7 @@
 import type { SiteConfig } from 'shared/types'
 import type { Plugin } from 'vite'
-import { relative } from 'node:path'
+import { join, relative } from 'node:path'
+import { PACKAGE_ROOT } from 'node/constants'
 
 const SITE_DATA_ID = 'vt-ssg:site-data'
 
@@ -32,6 +33,15 @@ export function pluginConfig(config: SiteConfig, restart?: () => Promise<void>):
         // 插件内重启vite server
         // await server?.restart()
         await restart?.()
+      }
+    },
+    config() {
+      return {
+        resolve: {
+          alias: {
+            '@runtime': join(PACKAGE_ROOT, 'src', 'runtime', 'index.ts'),
+          },
+        },
       }
     },
   }

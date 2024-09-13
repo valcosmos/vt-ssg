@@ -7,6 +7,10 @@
     "rootDir": ".",
     "module": "ESNext",
     "moduleResolution": "Node",
+    "paths": {
+      "@shared/*": ["shared/*"],
+      "@runtime": ["runtime/index.ts"]
+    },
     /* Type Checking */
     "strict": true,
     "outDir": "dist",
