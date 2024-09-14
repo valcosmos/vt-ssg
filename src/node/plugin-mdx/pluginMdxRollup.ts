@@ -4,6 +4,7 @@ import rehypeSlug from 'rehype-slug'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkGFM from 'remark-gfm'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
+import { rehypePluginPreWrapper } from './rehype-plugins/pre-wrapper'
 
 export function pluginMdxRollup() {
   return [mdx({
@@ -24,6 +25,7 @@ export function pluginMdxRollup() {
           },
         },
       ],
+      rehypePluginPreWrapper,
     ],
   })]
 }
