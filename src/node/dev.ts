@@ -1,10 +1,10 @@
-import react from '@vitejs/plugin-react'
 import { createServer } from 'vite'
 import { resolveConfig } from './config'
 import { PACKAGE_ROOT } from './constants'
-import { pluginRoutes } from './plugin-routes'
-import { pluginConfig } from './plugins/config'
-import { pluginHtml } from './plugins/html'
+// import { pluginRoutes } from './plugin-routes'
+// import { pluginConfig } from './plugins/config'
+// import { pluginHtml } from './plugins/html'
+import { createVitePlugins } from './vite-plugins'
 
 export async function createDevServer(root: string, restart?: () => Promise<void>) {
   const config = await resolveConfig(root, 'serve', 'development')
@@ -12,14 +12,7 @@ export async function createDevServer(root: string, restart?: () => Promise<void
 
   return createServer({
     root,
-    plugins: [
-      pluginHtml(),
-      react({ jsxRuntime: 'automatic' }),
-      pluginConfig(config, restart),
-      pluginRoutes({
-        root: config.root,
-      }),
-    ],
+    plugins: createVitePlugins(config, restart),
     server: {
       port: 5173,
       fs: {
