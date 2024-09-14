@@ -4,17 +4,17 @@ import type { InlineConfig } from 'vite'
 import { rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import process from 'node:process'
-import pluginReact from '@vitejs/plugin-react'
 import { build as viteBuild } from 'vite'
 import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH } from './constants'
-import { pluginConfig } from './plugins/config'
+import { createVitePlugins } from './vite-plugins'
 
 export async function bundle(root: string, config: SiteConfig) {
-  const resolveViteConfig = (isServer: boolean): InlineConfig => {
+  const resolveViteConfig = async (isServer: boolean): Promise<InlineConfig> => {
     return {
       mode: 'production',
       root,
-      plugins: [pluginReact(), pluginConfig(config)],
+      // plugins: [pluginReact(), pluginConfig(config)],
+      plugins: await createVitePlugins(config),
       ssr: {
         noExternal: ['react-router-dom'],
       },
@@ -32,17 +32,17 @@ export async function bundle(root: string, config: SiteConfig) {
   }
 
   try {
-    const clientBuild = async () => {
-      return viteBuild(resolveViteConfig(false))
-    }
+    // const clientBuild = async () => {
+    //   return viteBuild(await resolveViteConfig(false))
+    // }
 
-    const serverBuild = async () => {
-      return viteBuild(resolveViteConfig(true))
-    }
+    // const serverBuild = async () => {
+    //   return viteBuild(await resolveViteConfig(true))
+    // }
 
     const [clientBundle, serverBundle] = await Promise.all([
-      clientBuild(),
-      serverBuild(),
+      viteBuild(await resolveViteConfig(false)),
+      viteBuild(await resolveViteConfig(true)),
     ])
 
     return [clientBundle, serverBundle]

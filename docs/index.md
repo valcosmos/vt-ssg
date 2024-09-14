@@ -23,6 +23,11 @@ A note[^1]
 | a   | b   |   c |  d  |
 | --- | :-- | --: | :-: |
 
+```js
+const appHtml = render()
+const clientChunk = clientBundle?.output.find(chunk => chunk.type === 'chunk' && chunk.isEntry)
+```
+
 ## Tasklist
 
 - [ ] to do

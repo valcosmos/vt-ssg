@@ -12,7 +12,7 @@ export async function createDevServer(root: string, restart?: () => Promise<void
 
   return createServer({
     root,
-    plugins: createVitePlugins(config, restart),
+    plugins: await createVitePlugins(config, restart),
     server: {
       port: 5173,
       fs: {
