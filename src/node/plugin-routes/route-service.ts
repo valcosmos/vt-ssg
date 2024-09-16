@@ -42,11 +42,17 @@ export class RouteService {
     return routePath.startsWith('/') ? routePath : `/${routePath}`
   }
 
-  generateRoutesCode() {
+  generateRoutesCode(ssr: boolean) {
     return `
       import React from 'react';
-      import loadable from '@loadable/component';
-      ${this.#routeData.map((route, index) => `const Route${index} = loadable(() => import('${route.absolutePath}'))`).join('\n')}
+      ${ssr ? '' : 'import loadable from \'@loadable/component\';'}
+      ${this.#routeData
+          .map((route, index) => {
+            return ssr
+              ? `import Route${index} from '${route.absolutePath}'`
+              : `const Route${index} = loadable(() => import('${route.absolutePath}'))`
+          })
+          .join('\n')}
       export const routes = [
         ${this.#routeData.map((route, index) => `{ path: '${route.routePath}', element: React.createElement(Route${index}) }`)}
       ]

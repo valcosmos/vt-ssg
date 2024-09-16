@@ -1,8 +1,9 @@
 import type { SiteConfig } from '@shared/types'
 import type { RollupOutput } from 'rollup'
 import type { InlineConfig } from 'vite'
-import { rm, writeFile } from 'node:fs/promises'
-import { join } from 'node:path'
+import type { Route } from './plugin-routes'
+import { mkdir, rm, writeFile } from 'node:fs/promises'
+import { dirname, join } from 'node:path'
 import process from 'node:process'
 import { build as viteBuild } from 'vite'
 import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH } from './constants'
@@ -14,13 +15,13 @@ export async function bundle(root: string, config: SiteConfig) {
       mode: 'production',
       root,
       // plugins: [pluginReact(), pluginConfig(config)],
-      plugins: await createVitePlugins(config),
+      plugins: await createVitePlugins(config, undefined, isServer),
       ssr: {
         noExternal: ['react-router-dom'],
       },
       build: {
         ssr: isServer,
-        outDir: isServer ? '.temp' : 'build',
+        outDir: isServer ? join(root, '.temp') : join(root, 'build'),
         rollupOptions: {
           input: isServer ? SERVER_ENTRY_PATH : CLIENT_ENTRY_PATH,
           output: {
@@ -52,11 +53,16 @@ export async function bundle(root: string, config: SiteConfig) {
   }
 }
 
-export async function renderPage(render: () => string, root: string, clientBundle?: RollupOutput) {
-  const appHtml = render()
+export async function renderPage(render: (pagePath: string) => string, root: string, clientBundle?: RollupOutput, routes?: Route[]) {
+  // const appHtml = render()
   const clientChunk = clientBundle?.output.find(chunk => chunk.type === 'chunk' && chunk.isEntry)
 
-  const html = `
+  if (!routes)
+    return
+  await Promise.all(routes.map(async (route) => {
+    const routePath = route.path
+    const appHtml = render(routePath)
+    const html = `
     <!doctype html>
     <html lang="en">
       <head>
@@ -70,9 +76,13 @@ export async function renderPage(render: () => string, root: string, clientBundl
       </body>
     </html>
   `.trim()
+    const fileName = routePath.endsWith('/') ? `${routePath}index.html` : `${routePath}.html`
+    await mkdir(join(root, 'build', dirname(fileName)), { recursive: true })
+    await writeFile(join(root, 'build', fileName), html)
+  }))
 
-  await writeFile(join(root, 'build', 'index.html'), html, 'utf-8')
   await rm(join(root, '.temp'), { recursive: true })
+  // await writeFile(join(root, 'build', 'index.html'), html, 'utf-8')
 }
 
 export async function build(root: string = process.cwd(), config: SiteConfig) {
@@ -80,7 +90,7 @@ export async function build(root: string = process.cwd(), config: SiteConfig) {
 
   const serverEntryPath = join(root, '.temp', 'ssr-entry.cjs')
 
-  const { render } = await import(serverEntryPath)
+  const { render, routes } = await import(serverEntryPath)
 
-  await renderPage(render, root, clientBundle as RollupOutput)
+  await renderPage(render, root, clientBundle as RollupOutput, routes)
 }
