@@ -9,7 +9,7 @@
     "moduleResolution": "Node",
     "paths": {
       "@shared/*": ["shared/*"],
-      "@runtime": ["runtime/index.ts"]
+      "@runtime/*": ["runtime/*"]
     },
     /* Type Checking */
     "strict": true,

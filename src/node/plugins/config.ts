@@ -39,7 +39,7 @@ export function pluginConfig(config: SiteConfig, restart?: () => Promise<void>):
       return {
         resolve: {
           alias: {
-            '@runtime': join(PACKAGE_ROOT, 'src', 'runtime', 'index.ts'),
+            '@runtime': join(PACKAGE_ROOT, 'src', 'runtime'),
           },
         },
       }

@@ -1,13 +1,27 @@
-import { Content } from '@runtime'
+import { usePageData } from '@runtime/hooks'
 import 'uno.css'
 
 export function Layout() {
-  // const [count, setCount] = useState(0)
+  const { pageType } = usePageData()
+
+  const getContent = () => {
+    if (pageType === 'home') {
+      return <div>主页内容</div>
+    }
+    if (pageType === 'doc') {
+      return <div>Content</div>
+    }
+    if (pageType === '404') {
+      return <div>404</div>
+    }
+  }
 
   return (
     <div>
-      <h1 p="2" m="2" className="text-purple-500">Layout component</h1>
-      <Content />
+      <div>Nav</div>
+      {
+        getContent()
+      }
     </div>
   )
 }
