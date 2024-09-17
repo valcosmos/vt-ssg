@@ -1,4 +1,7 @@
 import { usePageData } from '@runtime/hooks'
+import Nav from '../components/Nav'
+import '../styles/var.css'
+import '../styles/base.css'
 import 'uno.css'
 
 export function Layout() {
@@ -18,7 +21,7 @@ export function Layout() {
 
   return (
     <div>
-      <div>Nav</div>
+      <Nav />
       {
         getContent()
       }

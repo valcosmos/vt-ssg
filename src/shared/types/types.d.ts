@@ -11,3 +11,8 @@ declare module 'vt-ssg:routes' {
   const routes: RouteObject[]
   export { routes }
 }
+
+declare module '*.module.scss' {
+  const classes: Record<string, string>
+  export default classes
+}

@@ -1,0 +1,346 @@
+/**
+ * Colors Base
+ *
+ * These are the pure base color presets. Most of the time, you should not be
+ * using these colors directly in the theme but rather use "Colors Theme"
+ * instead because those are "Theme (light or dark)" dependant.
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --ssg-c-white: #ffffff;
+  --ssg-c-white-soft: #f9f9f9;
+  --ssg-c-white-mute: #f1f1f1;
+
+  --ssg-c-black: #1a1a1a;
+  --ssg-c-black-pure: #000000;
+  --ssg-c-black-soft: #242424;
+  --ssg-c-black-mute: #2f2f2f;
+
+  --ssg-c-gray: #8e8e8e;
+  --ssg-c-gray-light-1: #aeaeae;
+  --ssg-c-gray-light-2: #c7c7c7;
+  --ssg-c-gray-light-3: #d1d1d1;
+  --ssg-c-gray-light-4: #e5e5e5;
+  --ssg-c-gray-light-5: #f2f2f2;
+  --ssg-c-gray-dark-1: #636363;
+  --ssg-c-gray-dark-2: #484848;
+  --ssg-c-gray-dark-3: #3a3a3a;
+  --ssg-c-gray-dark-4: #282828;
+  --ssg-c-gray-dark-5: #202020;
+
+  --ssg-c-divider-light-1: rgba(60, 60, 60, 0.29);
+  --ssg-c-divider-light-2: rgba(60, 60, 60, 0.12);
+  --ssg-c-divider-dark-1: rgba(84, 84, 84, 0.65);
+  --ssg-c-divider-dark-2: rgba(84, 84, 84, 0.48);
+
+  --ssg-c-indigo: #213547;
+  --ssg-c-indigo-soft: #476582;
+  --ssg-c-indigo-light: #aac8e4;
+  --ssg-c-indigo-lighter: #c9def1;
+  --ssg-c-indigo-dark: #1d2f3f;
+  --ssg-c-indigo-darker: #14212e;
+
+  --ssg-c-text-light-1: var(--ssg-c-indigo);
+  --ssg-c-text-light-2: rgba(60, 60, 60, 0.7);
+  --ssg-c-text-light-3: rgba(60, 60, 60, 0.33);
+  --ssg-c-text-light-4: rgba(60, 60, 60, 0.18);
+
+  --ssg-c-text-dark-1: rgba(255, 255, 255, 0.87);
+  --ssg-c-text-dark-2: rgba(235, 235, 235, 0.6);
+  --ssg-c-text-dark-3: rgba(235, 235, 235, 0.38);
+  --ssg-c-text-dark-4: rgba(235, 235, 235, 0.18);
+
+  --ssg-c-green: #21b8a3;
+  --ssg-c-green-light: #41c6b0;
+  --ssg-c-green-lighter: #41c6b0;
+  --ssg-c-green-dark: #149684;
+  --ssg-c-green-darker: #149684;
+  --ssg-c-green-dimm: #062521;
+
+  --ssg-c-green-dimm-1: rgba(66, 184, 131, 0.5);
+  --ssg-c-green-dimm-2: rgba(66, 184, 131, 0.25);
+  --ssg-c-green-dimm-3: rgba(66, 184, 131, 0.05);
+
+  --ssg-c-blue: #646cff;
+  --ssg-c-blue-light: #747bff;
+  --ssg-c-blue-lighter: #9499ff;
+  --ssg-c-blue-lightest: #bcc0ff;
+  --ssg-c-blue-dark: #535bf2;
+  --ssg-c-blue-darker: #454ce1;
+  --ssg-c-blue-dimm: rgba(100, 108, 255, 0.08);
+
+  --ssg-c-yellow: #ffc517;
+  --ssg-c-yellow-light: #fcd253;
+  --ssg-c-yellow-lighter: #fcfc7c;
+  --ssg-c-yellow-darker: #ad850e;
+  --ssg-c-yellow-dimm-1: rgba(255, 197, 23, 0.5);
+  --ssg-c-yellow-dimm-2: rgba(255, 197, 23, 0.25);
+  --ssg-c-yellow-dimm-3: rgba(255, 197, 23, 0.05);
+
+  --ssg-c-red: #ed3c50;
+  --ssg-c-red-light: #f54e82;
+  --ssg-c-red-lighter: #fd1d7c;
+  --ssg-c-red-darker: #ab2131;
+  --ssg-c-red-dimm-1: rgba(237, 60, 80, 0.5);
+  --ssg-c-red-dimm-2: rgba(237, 60, 80, 0.25);
+  --ssg-c-red-dimm-3: rgba(237, 60, 80, 0.05);
+}
+
+/**
+ * Colors Theme
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --ssg-c-bg: var(--ssg-c-white);
+  --ssg-c-bg-soft: var(--ssg-c-white-soft);
+  --ssg-c-bg-mute: var(--ssg-c-white-mute);
+  --ssg-c-bg-alt: var(--ssg-c-white-soft);
+
+  --ssg-c-divider: var(--ssg-c-divider-light-1);
+  --ssg-c-divider-light: var(--ssg-c-divider-light-2);
+
+  --ssg-c-text-1: var(--ssg-c-text-light-1);
+  --ssg-c-text-2: var(--ssg-c-text-light-2);
+  --ssg-c-text-3: var(--ssg-c-text-light-3);
+  --ssg-c-text-4: var(--ssg-c-text-light-4);
+
+  --ssg-c-text-code: var(--ssg-c-indigo-soft);
+
+  --ssg-c-brand: var(--ssg-c-green);
+  --ssg-c-brand-light: var(--ssg-c-green-light);
+  --ssg-c-brand-lighter: var(--ssg-c-green-lighter);
+  --ssg-c-brand-dark: var(--ssg-c-green-dark);
+  --ssg-c-brand-darker: var(--ssg-c-green-darker);
+}
+
+.dark {
+  --ssg-c-bg: var(--ssg-c-black-soft);
+  --ssg-c-bg-soft: var(--ssg-c-black-mute);
+  --ssg-c-bg-mute: var(--ssg-c-gray-dark-3);
+  --ssg-c-bg-alt: var(--ssg-c-black);
+
+  --ssg-c-divider: var(--ssg-c-divider-dark-1);
+  --ssg-c-divider-light: var(--ssg-c-divider-dark-2);
+
+  --ssg-c-divider-inverse: var(--ssg-c-divider-light-1);
+  --ssg-c-divider-inverse-light: var(--ssg-c-divider-light-2);
+
+  --ssg-c-text-1: var(--ssg-c-text-dark-1);
+  --ssg-c-text-2: var(--ssg-c-text-dark-2);
+  --ssg-c-text-3: var(--ssg-c-text-dark-3);
+  --ssg-c-text-4: var(--ssg-c-text-dark-4);
+
+  --ssg-c-text-inverse-1: var(--ssg-c-text-light-1);
+  --ssg-c-text-inverse-2: var(--ssg-c-text-light-2);
+  --ssg-c-text-inverse-3: var(--ssg-c-text-light-3);
+  --ssg-c-text-inverse-4: var(--ssg-c-text-light-4);
+
+  --ssg-c-text-code: var(--ssg-c-indigo-lighter);
+}
+
+/**
+ * Typography
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --ssg-font-family-base: 'Inter var experimental', 'Inter var', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --ssg-font-family-mono: Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/**
+ * Layouts
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --ssg-layout-max-width: 1440px;
+}
+
+/**
+ * Component: Code
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --ssg-code-line-height: 1.7;
+  --ssg-code-font-size: 0.875em;
+
+  --ssg-code-block-color: var(--ssg-c-text-dark-1);
+  --ssg-code-block-bg: #292d3e;
+
+  --ssg-code-line-highlight-color: rgba(0, 0, 0, 0.5);
+  --ssg-code-line-number-color: var(--ssg-c-text-dark-3);
+
+  --ssg-code-copy-code-hover-bg: rgba(255, 255, 255, 0.05);
+  --ssg-code-copy-code-active-text: var(--ssg-c-text-dark-2);
+}
+
+/**
+ * Icons
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --ssg-icon-copy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' height='20' width='20' stroke='rgba(128,128,128,1)' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2'/%3E%3C/svg%3E");
+  --ssg-icon-copied: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' height='20' width='20' stroke='rgba(128,128,128,1)' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 9 2 2 4-4'/%3E%3C/svg%3E");
+  --ssg-icon-tip: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M512 960C264.58 960 64 759.42 64 512S264.58 64 512 64s448 200.58 448 448-200.58 448-448 448z m0-832c-212.08 0-384 171.92-384 384s171.92 384 384 384 384-171.92 384-384-171.92-384-384-384z m0 112c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z m0 160c-17.67 0-32 14.33-32 32v320c0 17.67 14.33 32 32 32 17.67 0 32-14.33 32-32V432c0-17.67-14.33-32-32-32z' fill='%2321b8a3'/%3E%3C/svg%3E");
+}
+
+.dark {
+  --ssg-code-block-bg: var(--ssg-c-bg-alt);
+}
+
+/**
+ * Z-indexes
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --ssg-z-index-local-nav: 10;
+  --ssg-z-index-nav: 20;
+  --ssg-z-index-layout-top: 30;
+  --ssg-z-index-backdrop: 40;
+  --ssg-z-index-sidebar: 50;
+  --ssg-z-index-footer: 60;
+}
+
+/**
+ * Component: Button
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --ssg-button-brand-border: var(--ssg-c-brand-light);
+  --ssg-button-brand-text: var(--ssg-c-text-dark-1);
+  --ssg-button-brand-bg: var(--ssg-c-brand);
+  --ssg-button-brand-hover-border: var(--ssg-c-brand-light);
+  --ssg-button-brand-hover-text: var(--ssg-c-text-dark-1);
+  --ssg-button-brand-hover-bg: var(--ssg-c-brand-light);
+  --ssg-button-brand-active-border: var(--ssg-c-brand-light);
+  --ssg-button-brand-active-text: var(--ssg-c-text-dark-1);
+  --ssg-button-brand-active-bg: var(--ssg-button-brand-bg);
+
+  --ssg-button-alt-border: var(--ssg-c-gray-light-3);
+  --ssg-button-alt-text: var(--ssg-c-text-light-1);
+  --ssg-button-alt-bg: var(--ssg-c-gray-light-5);
+  --ssg-button-alt-hover-border: var(--ssg-c-gray-light-3);
+  --ssg-button-alt-hover-text: var(--ssg-c-text-light-1);
+  --ssg-button-alt-hover-bg: var(--ssg-c-gray-light-4);
+  --ssg-button-alt-active-border: var(--ssg-c-gray-light-3);
+  --ssg-button-alt-active-text: var(--ssg-c-text-light-1);
+  --ssg-button-alt-active-bg: var(--ssg-c-gray-light-3);
+
+  --ssg-button-sponsor-border: var(--ssg-c-gray-light-3);
+  --ssg-button-sponsor-text: var(--ssg-c-text-light-2);
+  --ssg-button-sponsor-bg: transparent;
+  --ssg-button-sponsor-hover-border: var(--ssg-c-sponsor);
+  --ssg-button-sponsor-hover-text: var(--ssg-c-sponsor);
+  --ssg-button-sponsor-hover-bg: transparent;
+  --ssg-button-sponsor-active-border: var(--ssg-c-sponsor);
+  --ssg-button-sponsor-active-text: var(--ssg-c-sponsor);
+  --ssg-button-sponsor-active-bg: transparent;
+}
+
+.dark {
+  --ssg-button-brand-border: var(--ssg-c-brand-light);
+  --ssg-button-brand-text: var(--ssg-c-text-dark-1);
+  --ssg-button-brand-bg: var(--ssg-c-brand-dark);
+  --ssg-button-brand-hover-border: var(--ssg-c-brand-lighter);
+  --ssg-button-brand-hover-text: var(--ssg-c-text-dark-1);
+  --ssg-button-brand-hover-bg: var(--ssg-c-brand);
+  --ssg-button-brand-active-border: var(--ssg-c-brand-lighter);
+  --ssg-button-brand-active-text: var(--ssg-c-text-dark-1);
+  --ssg-button-brand-active-bg: var(--ssg-button-brand-bg);
+
+  --ssg-button-alt-border: var(--ssg-c-gray-dark-2);
+  --ssg-button-alt-text: var(--ssg-c-text-dark-1);
+  --ssg-button-alt-bg: var(--ssg-c-bg-mute);
+  --ssg-button-alt-hover-border: var(--ssg-c-gray-dark-2);
+  --ssg-button-alt-hover-text: var(--ssg-c-text-dark-1);
+  --ssg-button-alt-hover-bg: var(--ssg-c-gray-dark-2);
+  --ssg-button-alt-active-border: var(--ssg-c-gray-dark-2);
+  --ssg-button-alt-active-text: var(--ssg-c-text-dark-1);
+  --ssg-button-alt-active-bg: var(--ssg-button-alt-bg);
+
+  --ssg-button-sponsor-border: var(--ssg-c-gray-dark-1);
+  --ssg-button-sponsor-text: var(--ssg-c-text-dark-2);
+}
+
+/**
+ * Component: Custom Block
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --ssg-custom-block-code-font-size: 13px;
+
+  --ssg-custom-block-info-border: var(--ssg-c-divider-light);
+  --ssg-custom-block-info-text: var(--ssg-c-text-2);
+  --ssg-custom-block-info-bg: var(--ssg-c-white-soft);
+  --ssg-custom-block-info-code-bg: var(--ssg-c-gray-light-4);
+
+  --ssg-custom-block-tip-border: var(--ssg-c-green-dimm-1);
+  --ssg-custom-block-tip-text: var(--ssg-c-green-darker);
+  --ssg-custom-block-tip-bg: var(--ssg-c-green-dimm-3);
+  --ssg-custom-block-tip-code-bg: var(--ssg-custom-block-tip-bg);
+
+  --ssg-custom-block-warning-border: var(--ssg-c-yellow-dimm-1);
+  --ssg-custom-block-warning-text: var(--ssg-c-yellow-darker);
+  --ssg-custom-block-warning-bg: var(--ssg-c-yellow-dimm-3);
+  --ssg-custom-block-warning-code-bg: var(--ssg-custom-block-warning-bg);
+
+  --ssg-custom-block-danger-border: var(--ssg-c-red-dimm-1);
+  --ssg-custom-block-danger-text: var(--ssg-c-red-darker);
+  --ssg-custom-block-danger-bg: var(--ssg-c-red-dimm-3);
+  --ssg-custom-block-danger-code-bg: var(--ssg-custom-block-danger-bg);
+}
+
+.dark {
+  --ssg-custom-block-info-border: var(--ssg-c-divider-light);
+  --ssg-custom-block-info-bg: var(--ssg-c-black-mute);
+  --ssg-custom-block-info-code-bg: var(--ssg-c-gray-dark-4);
+
+  --ssg-custom-block-tip-border: var(--ssg-c-green-dimm-2);
+  --ssg-custom-block-tip-text: var(--ssg-c-green-light);
+
+  --ssg-custom-block-warning-border: var(--ssg-c-yellow-dimm-2);
+  --ssg-custom-block-warning-text: var(--ssg-c-yellow-light);
+
+  --ssg-custom-block-danger-border: var(--ssg-c-red-dimm-2);
+  --ssg-custom-block-danger-text: var(--ssg-c-red-light);
+}
+
+/**
+ * Component: Nav
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --ssg-nav-height: 56px;
+}
+
+/**
+ * Component: Sidebar
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --ssg-sidebar-width: 272px;
+}
+
+/**
+ * Component: Home
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --ssg-home-hero-name-color: transparent;
+  --ssg-home-hero-name-background: -webkit-linear-gradient(120deg, var(--ssg-c-brand) 30%, #41d1ff);
+
+  --ssg-home-hero-image-background-image: none;
+  --ssg-home-hero-image-filter: none;
+}
+
+/**
+ * Shadows
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --ssg-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --ssg-shadow-2: 0 3px 12px rgba(0, 0, 0, 0.07), 0 1px 4px rgba(0, 0, 0, 0.07);
+  --ssg-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.08);
+  --ssg-shadow-4: 0 14px 44px rgba(0, 0, 0, 0.12), 0 3px 9px rgba(0, 0, 0, 0.12);
+  --ssg-shadow-5: 0 18px 56px rgba(0, 0, 0, 0.16), 0 4px 12px rgba(0, 0, 0, 0.16);
+}
