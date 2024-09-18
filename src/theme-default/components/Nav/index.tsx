@@ -1,6 +1,7 @@
 import type { NavItemWithLink } from '@shared/types'
 import { usePageData } from '@runtime/hooks'
 import React from 'react'
+import { SwitchAppearance } from '../SwitchAppearance'
 import styles from './index.module.scss'
 
 function MenuItem(item: NavItemWithLink) {
@@ -24,10 +25,10 @@ export default function Nav() {
 
         <div flex>
           <div flex>{nav.map(item => <MenuItem {...item} key={item.text} />) }</div>
-          <div>
-            {/* TODO: */}
+          <div before="menu-item-before" flex>
+            <SwitchAppearance />
           </div>
-          <div className={styles['social-link-icon']}>
+          <div before="menu-item-before" className={styles['social-link-icon']} ml-2>
             <a href="/">
               <i className="i-carbon-logo-github inline-block h-5 w-5 fill-current"></i>
             </a>
