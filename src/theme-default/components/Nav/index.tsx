@@ -4,10 +4,10 @@ import React from 'react'
 import { SwitchAppearance } from '../SwitchAppearance'
 import styles from './index.module.scss'
 
-function MenuItem(item: NavItemWithLink) {
+function MenuItem({ link, text }: NavItemWithLink) {
   return (
     <div text-sm font-medium mx-3>
-      <a href={item.link} className={styles.link}>{ item.text }</a>
+      <a href={link} className={styles.link}>{ text }</a>
     </div>
   )
 }

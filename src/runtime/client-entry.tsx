@@ -2,8 +2,9 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 // import siteData from 'vt-ssg:site-data'
-import App, { initPageData } from './App'
+import App from './App'
 import { DataContext } from './hooks'
+import { initPageData } from './init-page-data'
 
 async function renderInBrowser() {
   const containerEl = document.getElementById('root')

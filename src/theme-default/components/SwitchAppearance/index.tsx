@@ -9,11 +9,11 @@ interface SwitchProps {
   className?: string
 }
 
-export function Switch(props: SwitchProps) {
+export function Switch({ className, onClick, children }: SwitchProps) {
   return (
-    <button className={`${styles.switch} ${props.className}`} type="button" role="switch" {...(props.onClick ? { onClick: props.onClick } : {})}>
+    <button className={`${styles.switch} ${className}`} type="button" role="switch" {...(onClick ? { onClick } : {})}>
       <span className={styles.check}>
-        <span className={styles.icon}>{ props.children }</span>
+        <span className={styles.icon}>{ children }</span>
       </span>
     </button>
   )
