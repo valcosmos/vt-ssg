@@ -16,9 +16,10 @@ export interface SidebarGroup {
   items: SidebarItem[]
 }
 
-export interface Sidebar {
-  [path: string]: SidebarGroup
-}
+// export interface Sidebar {
+//   [path: string]: SidebarGroup
+// }
+export type Sidebar = Record<string, SidebarGroup[]>
 
 export interface Footer {
   message: string

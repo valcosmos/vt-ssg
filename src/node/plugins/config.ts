@@ -2,6 +2,7 @@ import type { SiteConfig } from 'shared/types'
 import type { Plugin } from 'vite'
 import { join, relative } from 'node:path'
 import { PACKAGE_ROOT } from 'node/constants'
+import sirv from 'sirv'
 
 const SITE_DATA_ID = 'vt-ssg:site-data'
 
@@ -37,6 +38,7 @@ export function pluginConfig(config: SiteConfig, restart?: () => Promise<void>):
     },
     config() {
       return {
+        root: PACKAGE_ROOT,
         resolve: {
           alias: {
             '@runtime': join(PACKAGE_ROOT, 'src', 'runtime'),
@@ -44,5 +46,10 @@ export function pluginConfig(config: SiteConfig, restart?: () => Promise<void>):
         },
       }
     },
+    configureServer(server) {
+      const publicDir = join(config.root, 'public')
+      server.middlewares.use(sirv(publicDir))
+    },
+
   }
 }
