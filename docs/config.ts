@@ -7,7 +7,7 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: '主页', link: '/' },
-      { text: '指南', link: '/' },
+      { text: '指南', link: '/guide/' },
     ],
     sidebar: {
       '/guide/': [
@@ -21,6 +21,10 @@ export default defineConfig({
             {
               text: '如何安装',
               link: '/guide/b',
+            },
+            {
+              text: '注意事项',
+              link: '/guide/c',
             },
           ],
         },

@@ -4,6 +4,7 @@ import { DocLayout } from './DocLayout'
 import HomeLayout from './HomeLayout'
 import '../styles/var.css'
 import '../styles/base.css'
+import '../styles/doc.css'
 import 'uno.css'
 
 export function Layout() {
@@ -24,9 +25,9 @@ export function Layout() {
   return (
     <div>
       <Nav />
-      {
-        getContent()
-      }
+      <section style={{ paddingTop: 'var(--ssg-nav-height)' }}>
+        {getContent()}
+      </section>
     </div>
   )
 }
