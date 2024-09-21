@@ -319,6 +319,7 @@
 
 :root {
   --ssg-sidebar-width: 272px;
+  --ssg-aside-width: 268px;
 }
 
 /**

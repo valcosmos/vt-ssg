@@ -4,16 +4,6 @@ import styles from './index.module.scss'
 export function DocFooter() {
   const { prevPage, nextPage } = usePrevNextPage()
 
-  // const prevPage = {
-  //   text: '快速上手',
-  //   link: '/guide/a',
-  // }
-
-  // const nextPage = {
-  //   text: '注意事项',
-  //   link: '/guide/c',
-  // }
-
   return (
     <footer mt-8>
       <div flex gap-2 divider-top pt-6>

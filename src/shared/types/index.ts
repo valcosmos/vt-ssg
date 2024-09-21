@@ -94,4 +94,5 @@ export interface PageData {
 export interface PageModule extends Record<string, unknown> {
   default: ComponentType
   frontmatter?: FrontMatter
+  toc?: Header[]
 }
