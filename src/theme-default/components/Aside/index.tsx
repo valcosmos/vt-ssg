@@ -1,5 +1,6 @@
 import type { Header } from '@shared/types'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
+import { bindingAsideScroll, scrollToTarget } from '../../logic/asideScroll'
 
 interface AsideProps {
   headers?: Header[]
@@ -9,6 +10,14 @@ interface AsideProps {
 export default function Aside({ headers }: AsideProps) {
   const hasOutline = headers && headers?.length > 0
   const markerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const unbinding = bindingAsideScroll()
+
+    return () => {
+      unbinding?.()
+    }
+  }, [])
 
   const renderHeader = (header: Header) => {
     return (
@@ -21,6 +30,11 @@ export default function Aside({ headers }: AsideProps) {
           className="hover:text-text-1"
           transition="color duration-300"
           style={{ paddingLeft: (header.depth - 2) * 12 }}
+          onClick={(e) => {
+            e.preventDefault()
+            const target = document.getElementById(header.id)
+            target && scrollToTarget(target, false)
+          }}
         >
           {header.text}
         </a>
