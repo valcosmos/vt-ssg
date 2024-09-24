@@ -4,8 +4,6 @@ import { parse } from 'acorn'
 import GithubSlugger from 'github-slugger'
 import { visit } from 'unist-util-visit'
 
-const slugger = new GithubSlugger()
-
 interface TocItem {
   id: string
   text: string
@@ -21,6 +19,9 @@ interface ChildNode {
 export const remarkPluginToc: Plugin<[], Root> = () => {
   return (tree) => {
     const toc: TocItem[] = []
+
+    const slugger = new GithubSlugger()
+
     visit(tree, 'heading', (node) => {
       if (!node.depth || !node.children?.length)
         return

@@ -1,5 +1,3 @@
-const classList = document.documentElement.classList
-
 const APPEARANCE_KEY = 'appearance'
 
 function updateAppearance() {
@@ -13,6 +11,7 @@ if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
 }
 
 function setClassList(isDark = false) {
+  const classList = document.documentElement.classList
   if (isDark) {
     classList.add('dark')
   }
@@ -22,6 +21,7 @@ function setClassList(isDark = false) {
 }
 
 export function toggle() {
+  const classList = document.documentElement.classList
   if (classList.contains('dark')) {
     setClassList(false)
     localStorage.setItem(APPEARANCE_KEY, 'light')

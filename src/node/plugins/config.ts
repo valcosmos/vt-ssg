@@ -6,11 +6,11 @@ import sirv from 'sirv'
 
 const SITE_DATA_ID = 'vt-ssg:site-data'
 
-export function pluginConfig(config: SiteConfig, restart?: () => Promise<void>): Plugin {
+export function pluginConfig(config: SiteConfig, restartServer?: () => Promise<void>): Plugin {
   // let server: ViteDevServer | null = null
 
   return {
-    name: 'vt-ssg:site-data',
+    name: 'vt-ssg:config',
     resolveId(id) {
       if (id === SITE_DATA_ID) {
         // 虚拟模块 以 \0 开头
@@ -33,7 +33,7 @@ export function pluginConfig(config: SiteConfig, restart?: () => Promise<void>):
         console.log(`\n${relative(config.root, ctx.file)} changed, restarting server...`)
         // 插件内重启vite server
         // await server?.restart()
-        await restart?.()
+        await restartServer?.()
       }
     },
     config() {

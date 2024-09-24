@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 declare module 'vt-ssg:site-data' {
   import type { UserConfig } from 'shared/types'
 
@@ -12,7 +14,7 @@ declare module 'vt-ssg:routes' {
   export { routes }
 }
 
-declare module '*.module.scss' {
-  const classes: Record<string, string>
-  export default classes
-}
+// declare module '*.module.scss' {
+//   const classes: Record<string, string>
+//   export default classes
+// }

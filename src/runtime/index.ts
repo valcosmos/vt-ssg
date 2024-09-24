@@ -1,1 +1,3 @@
-export { Content } from './content'
+import Content from './Content'
+
+export { Content }

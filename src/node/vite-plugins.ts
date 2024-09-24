@@ -6,14 +6,14 @@ import { pluginRoutes } from './plugin-routes'
 import { pluginConfig } from './plugins/config'
 import { pluginHtml } from './plugins/html'
 
-export async function createVitePlugins(config: SiteConfig, restart?: () => Promise<void>, isSSR?: boolean) {
+export async function createVitePlugins(config: SiteConfig, restartServer?: () => Promise<void>, isSSR?: boolean) {
   return [
     pluginUnocss({
       configFile: '../../uno.config.ts',
     }),
     pluginHtml(),
     react({ jsxRuntime: 'automatic' }),
-    pluginConfig(config, restart),
+    pluginConfig(config, restartServer),
     pluginRoutes({
       root: config.root,
       isSSR,
