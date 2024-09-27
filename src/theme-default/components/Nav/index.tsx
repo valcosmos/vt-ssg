@@ -4,7 +4,7 @@ import React from 'react'
 import { SwitchAppearance } from '../SwitchAppearance'
 import styles from './index.module.scss'
 
-function MenuItem({ link, text }: NavItemWithLink) {
+function MenuItem({ item: { link, text } }: { item: NavItemWithLink }) {
   return (
     <div text-sm font-medium mx-3>
       <a href={link} className={styles.link}>{ text }</a>
@@ -24,7 +24,7 @@ export default function Nav() {
         </div>
 
         <div flex>
-          <div flex>{nav.map(item => <MenuItem {...item} key={item.text} />) }</div>
+          <div flex>{nav.map(item => <MenuItem item={item} key={item.text} />) }</div>
           <div before="menu-item-before" flex>
             <SwitchAppearance />
           </div>

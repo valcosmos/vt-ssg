@@ -96,3 +96,7 @@ export interface PageModule extends Record<string, unknown> {
   frontmatter?: FrontMatter
   toc?: Header[]
 }
+
+export interface PropsWithSSG {
+  __ssg?: boolean
+}

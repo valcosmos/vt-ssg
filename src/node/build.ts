@@ -29,6 +29,16 @@ export async function bundle(root: string, config: SiteConfig) {
           },
         },
       },
+      css: {
+        preprocessorOptions: {
+          scss: {
+            api: 'modern-compiler', // or "modern", "legacy"
+            importers: [
+              // ...
+            ],
+          },
+        },
+      },
     }
   }
 

@@ -1,4 +1,4 @@
-import type { Header } from '@shared/types'
+import type { Header, PropsWithSSG } from '@shared/types'
 import React, { useEffect, useRef } from 'react'
 import { bindingAsideScroll, scrollToTarget } from '../../logic/asideScroll'
 import { useHeaders } from '../../logic/useHeaders'
@@ -8,7 +8,7 @@ interface AsideProps {
 
 }
 
-export default function Aside({ headers: rawHeaders }: AsideProps) {
+export default function Aside({ headers: rawHeaders }: AsideProps & PropsWithSSG) {
   const headers = useHeaders(rawHeaders)
 
   const hasOutline = headers && headers?.length > 0

@@ -7,8 +7,13 @@ import { initPageData } from './init-page-data'
 
 export async function render(pagePath: string) {
   const pageData = await initPageData(pagePath)
+  // eslint-disable-next-line ts/ban-ts-comment
+  // @ts-expect-error
+  const { clearIslandData, data } = await import('./jsx-runtime')
+  const { islandProps, islandToPathMap } = data
+  clearIslandData()
 
-  return renderToString(
+  const appHtml = renderToString(
     <DataContext.Provider value={pageData}>
       <StaticRouter location={pagePath}>
         <App />
@@ -16,6 +21,12 @@ export async function render(pagePath: string) {
       ,
     </DataContext.Provider>,
   )
+
+  return {
+    appHtml,
+    islandProps,
+    islandToPathMap,
+  }
 }
 
 export { routes } from 'vt-ssg:routes'

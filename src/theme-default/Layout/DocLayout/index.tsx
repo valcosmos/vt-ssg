@@ -29,7 +29,7 @@ export function DocLayout() {
         </div>
 
         <div className={styles['aside-container']}>
-          <Aside headers={toc} />
+          <Aside headers={toc} __ssg />
         </div>
       </div>
     </div>
