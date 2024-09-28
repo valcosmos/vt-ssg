@@ -16,7 +16,6 @@ export async function render(pagePath: string) {
   // eslint-disable-next-line ts/ban-ts-comment
   // @ts-expect-error
   const { clearSsgData, data } = await import('./jsx-runtime')
-  const { ssgProps, ssgToPathMap } = data
 
   clearSsgData()
 
@@ -29,6 +28,7 @@ export async function render(pagePath: string) {
     </DataContext.Provider>,
   )
 
+  const { ssgProps, ssgToPathMap } = data
   return {
     appHtml,
     ssgProps,

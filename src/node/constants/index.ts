@@ -11,3 +11,12 @@ export const CLIENT_ENTRY_PATH = join(RUNTIME_PATH, 'client-entry.tsx')
 export const SERVER_ENTRY_PATH = join(RUNTIME_PATH, 'ssr-entry.tsx')
 
 export const MASK_SPLITTER = '!!SSG!!'
+
+export const CLIENT_OUTPUT = 'build'
+
+export const EXTERNALS = [
+  'react',
+  'react-dom',
+  'react-dom/client',
+  'react/jsx-runtime',
+]
