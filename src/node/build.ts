@@ -1,3 +1,4 @@
+import type { RenderResult } from '@runtime/ssr-entry'
 import type { SiteConfig } from '@shared/types'
 import type { RollupOutput } from 'rollup'
 import type { InlineConfig } from 'vite'
@@ -6,7 +7,7 @@ import { mkdir, rm, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import process from 'node:process'
 import { build as viteBuild } from 'vite'
-import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH } from './constants'
+import { CLIENT_ENTRY_PATH, MASK_SPLITTER, SERVER_ENTRY_PATH } from './constants'
 import { createVitePlugins } from './vite-plugins'
 
 export async function bundle(root: string, config: SiteConfig) {
@@ -63,7 +64,64 @@ export async function bundle(root: string, config: SiteConfig) {
   }
 }
 
-export async function renderPage(render: (pagePath: string) => string, root: string, clientBundle?: RollupOutput, routes?: Route[]) {
+async function buildSsg(root: string, ssgToPathMap: Record<string, string>) {
+  // 根据 ssgToPathMap 拼接模块代码内容
+  const ssgInjectCode = `
+    ${Object.entries(ssgToPathMap)
+        .map(
+          ([ssgName, ssgPath]) =>
+            `import { ${ssgName} } from '${ssgPath}';`,
+        )
+        .join('')}
+window.ssgS = { ${Object.keys(ssgToPathMap).join(', ')} };
+window.ssg_PROPS = JSON.parse(
+  document.getElementById('ssg-props').textContent
+);
+  `
+  const injectId = 'ssg:inject'
+  return viteBuild({
+    mode: 'production',
+    build: {
+      // 输出目录
+      outDir: join(root, '.temp'),
+      rollupOptions: {
+        input: injectId,
+      },
+    },
+    plugins: [
+      // 重点插件，用来加载我们拼接的 ssgs 注册模块的代码
+      {
+        name: 'ssg:inject',
+        enforce: 'post',
+        resolveId(id) {
+          if (id.includes(MASK_SPLITTER)) {
+            const [originId, importer] = id.split(MASK_SPLITTER)
+            return this.resolve(originId, importer, { skipSelf: true })
+          }
+
+          if (id === injectId) {
+            return id
+          }
+        },
+        load(id) {
+          if (id === injectId) {
+            return ssgInjectCode
+          }
+        },
+        // 对于 ssgs Bundle，我们只需要 JS 即可，其它资源文件可以删除
+        generateBundle(_, bundle) {
+          for (const name in bundle) {
+            if (bundle[name].type === 'asset') {
+              delete bundle[name]
+            }
+          }
+        },
+      },
+    ],
+  })
+}
+
+export async function renderPage(render: (pagePath: string) => RenderResult, root: string, clientBundle?: RollupOutput, routes?: Route[]) {
   // const appHtml = render()
   const clientChunk = clientBundle?.output.find(chunk => chunk.type === 'chunk' && chunk.isEntry)
 
@@ -71,7 +129,8 @@ export async function renderPage(render: (pagePath: string) => string, root: str
     return
   await Promise.all(routes.map(async (route) => {
     const routePath = route.path
-    const appHtml = await render(routePath)
+    const { appHtml, ssgToPathMap } = await render(routePath)
+    buildSsg(root, ssgToPathMap)
     const html = `
     <!doctype html>
     <html lang="en">

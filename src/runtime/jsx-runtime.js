@@ -6,20 +6,20 @@ const originJsx = jsxRuntime.jsx
 const originJsxs = jsxRuntime.jsxs
 
 export const data = {
-  islandProps: [],
-  islandToPathMap: {},
+  ssgProps: [],
+  ssgToPathMap: {},
 }
 
 function internalJsx(jsx, type, props, ...args) {
-  // 如果发现有 __ssg 这个 prop，则视为一个 Island 组件，记录下来
+  // 如果发现有 __ssg 这个 prop，则视为一个 ssg 组件，记录下来
   if (props && props.__ssg) {
-    data.islandProps.push(props)
+    data.ssgProps.push(props)
     const id = type.name
-    data.islandToPathMap[id] = props.__ssg
+    data.ssgToPathMap[id] = props.__ssg
 
     delete props.__ssg
     return jsx('div', {
-      __ssg: `${id}:${data.islandProps.length - 1}`,
+      __ssg: `${id}:${data.ssgProps.length - 1}`,
       children: jsx(type, props, ...args),
     })
   }
@@ -32,9 +32,9 @@ export const jsx = (...args) => internalJsx(originJsx, ...args)
 
 export const jsxs = (...args) => internalJsx(originJsxs, ...args)
 
-export function clearIslandData() {
-  data.islandProps = []
-  data.islandToPathMap = {}
+export function clearSsgData() {
+  data.ssgProps = []
+  data.ssgToPathMap = {}
 }
 
 export const Fragment = jsxRuntime.Fragment

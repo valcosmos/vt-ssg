@@ -35,9 +35,9 @@ export default declare((api) => {
       const binding = path.scope.getBinding(bindingName)
 
       if (binding?.path.parent.type === 'ImportDeclaration') {
-        // 定位到 import 语句之后，我们拿到 Island 组件对应的引入路径
+        // 定位到 import 语句之后，我们拿到 ssg 组件对应的引入路径
         const source = binding.path.parent.source
-        // 然后将 __island prop 进行修改
+        // 然后将 __ssg prop 进行修改
         const attributes = (path.container as JSXElement).openingElement.attributes
         for (let i = 0; i < attributes.length; i++) {
           const name = (attributes[i] as JSXAttribute).name

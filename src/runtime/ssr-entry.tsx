@@ -5,13 +5,20 @@ import App from './App'
 import { DataContext } from './hooks'
 import { initPageData } from './init-page-data'
 
+export interface RenderResult {
+  appHtml: string
+  propsData: unknown[]
+  ssgToPathMap: Record<string, string>
+}
+
 export async function render(pagePath: string) {
   const pageData = await initPageData(pagePath)
   // eslint-disable-next-line ts/ban-ts-comment
   // @ts-expect-error
-  const { clearIslandData, data } = await import('./jsx-runtime')
-  const { islandProps, islandToPathMap } = data
-  clearIslandData()
+  const { clearSsgData, data } = await import('./jsx-runtime')
+  const { ssgProps, ssgToPathMap } = data
+
+  clearSsgData()
 
   const appHtml = renderToString(
     <DataContext.Provider value={pageData}>
@@ -24,8 +31,8 @@ export async function render(pagePath: string) {
 
   return {
     appHtml,
-    islandProps,
-    islandToPathMap,
+    ssgProps,
+    ssgToPathMap,
   }
 }
 
